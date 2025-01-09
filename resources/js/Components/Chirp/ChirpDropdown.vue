@@ -2,6 +2,10 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps({
+    chirp: {
+        type: Object,
+        required: true,
+    },
     align: {
         type: String,
         default: 'right',
@@ -15,6 +19,8 @@ const props = defineProps({
         default: 'py-1 bg-white',
     },
 });
+
+defineEmits(['edit', 'delete']);
 
 const closeOnEscape = (e) => {
     if (open.value && e.key === 'Escape') {
@@ -47,7 +53,14 @@ const open = ref(false);
 <template>
     <div class="relative">
         <div @click="open = !open">
-            <slot name="trigger" />
+            <!-- Trigger button -->
+            <button class="text-gray-400 hover:text-gray-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 3c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 14c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                    />
+                </svg>
+            </button>
         </div>
 
         <!-- Full Screen Dropdown Overlay -->
@@ -76,7 +89,19 @@ const open = ref(false);
                     class="rounded-md ring-1 ring-black ring-opacity-5"
                     :class="contentClasses"
                 >
-                    <slot name="content" />
+                    <!-- Dropdown content -->
+                    <button
+                        class="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100"
+                        @click="$emit('edit')"
+                    >
+                        Edit
+                    </button>
+                    <button
+                        class="block w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100"
+                        @click="$emit('delete')"
+                    >
+                        Delete
+                    </button>
                 </div>
             </div>
         </Transition>
