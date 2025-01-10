@@ -24,6 +24,7 @@ const generateChirps = async () => {
         generatedChirps.value = response.data.chirps;
         showModal.value = true;
     } catch (error) {
+        console.error('Error details:', error.response?.data || error);
         errorMessage.value =
             error.response?.data?.error || 'Failed to generate chirps';
     } finally {
@@ -44,7 +45,7 @@ const submit = () => {
 </script>
 
 <template>
-    <div class="rounded-lg bg-white p-6 shadow-sm">
+    <div class="card">
         <form @submit.prevent="submit">
             <ChirpTextArea
                 v-model="form.message"
@@ -60,8 +61,7 @@ const submit = () => {
             </div>
         </form>
 
-        <!-- Error Message -->
-        <div v-if="errorMessage" class="mt-4 text-red-600">
+        <div v-if="errorMessage" class="mt-4 text-red-600 dark:text-red-400">
             {{ errorMessage }}
         </div>
 

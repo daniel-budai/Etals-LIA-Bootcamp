@@ -11,7 +11,7 @@ defineEmits(['generate']);
         type="button"
         @click="$emit('generate')"
         :disabled="isLoading"
-        class="inline-flex items-center rounded-md bg-[#10A37F] px-4 py-2 text-white transition hover:bg-[#0E8E6D] disabled:opacity-50"
+        class="inline-flex items-center rounded-md bg-[#10A37F] px-4 py-2 text-white transition hover:bg-[#0E8E6D] disabled:opacity-50 dark:bg-[#0E8E6D] dark:hover:bg-[#0D7D5F]"
     >
         <svg
             v-if="isLoading"

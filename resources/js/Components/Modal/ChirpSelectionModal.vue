@@ -20,9 +20,13 @@ defineEmits(['close', 'select']);
 
         <!-- Modal -->
         <div class="flex min-h-full items-center justify-center p-4">
-            <div class="relative w-full max-w-lg rounded-lg bg-white shadow-xl">
+            <div
+                class="relative w-full max-w-lg rounded-lg bg-white shadow-xl dark:bg-gray-800"
+            >
                 <div class="p-6">
-                    <h2 class="mb-4 text-xl font-semibold">
+                    <h2
+                        class="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100"
+                    >
                         Choose Your Chirp
                     </h2>
                     <div class="space-y-4">
@@ -30,11 +34,13 @@ defineEmits(['close', 'select']);
                             v-for="chirp in chirps"
                             :key="chirp.type"
                             @click="$emit('select', chirp)"
-                            class="cursor-pointer rounded-lg border p-4 transition hover:bg-gray-50"
+                            class="cursor-pointer rounded-lg border border-gray-200 p-4 transition hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-700"
                         >
-                            <p class="text-sm">{{ chirp.message }}</p>
+                            <p class="text-sm text-gray-900 dark:text-gray-100">
+                                {{ chirp.message }}
+                            </p>
                             <span
-                                class="mt-2 inline-block text-xs capitalize text-gray-500"
+                                class="mt-2 inline-block text-xs capitalize text-gray-500 dark:text-gray-400"
                             >
                                 {{ chirp.type }}
                             </span>
