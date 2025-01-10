@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Chirp extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'message',
         'user_id'
