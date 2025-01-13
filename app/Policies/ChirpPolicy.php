@@ -56,7 +56,7 @@ class ChirpPolicy
      */
     public function restore(User $user, Chirp $chirp): bool
     {
-        return false; // Behövs inte om du inte använder soft deletes
+        return $chirp->user()->is($user); //no need when softdelete
     }
 
     /**
@@ -64,6 +64,6 @@ class ChirpPolicy
      */
     public function forceDelete(User $user, Chirp $chirp): bool
     {
-        return false; // Behövs inte om du inte använder soft deletes
+        return $chirp->user()->is($user); //no need when softdelete
     }
 } 
